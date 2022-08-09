@@ -179,7 +179,15 @@ function titlescreen(){
     gamestate = 1;
   }
 
-  r.clr(3, r.SCREEN)
+  r.clr(12, r.SCREEN)
+  let cols = 40, rows = 24;
+  let col = r.WIDTH / cols, row = r.HEIGHT / rows;
+  for(let i = 0; i < cols; i++){
+    r.line(i * col, 0, i * col, r.HEIGHT, 2);
+  }
+  for(let i = 0; i < rows; i++){
+    r.line(0, i * row, r.WIDTH, i * row, 2);
+  }
   let text = "TITLE SCREEN"
   r.text([text, w/2-2, 100, 1, 3, 'center', 'top', 1, 22]);
 
