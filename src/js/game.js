@@ -1,9 +1,3 @@
-
-// import Stats from './Stats.js';
-// stats = new Stats();
-// stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
-// document.body.appendChild( stats.dom );
-
 import RetroBuffer from './core/RetroBuffer.js';
 import MusicPlayer from './musicplayer.js';
 
@@ -23,12 +17,24 @@ else {
   h = Math.floor(innerHeight/4);
 }
 
-
-
 view = {
   x: 0,
   y: 0,
 }
+
+const styleSheet = document.createElement("style")
+styleSheet.type = "text/css"
+styleSheet.innerText = `
+  canvas {display: inline-block; height:100%; width:100%;  image-rendering: pixelated;
+    image-rendering: crisp-edges; background-color: black;}
+
+  * {
+    overflow: hidden;
+    background-color: black;
+    margin: 0;
+    }
+`
+document.head.appendChild(styleSheet)
 
 screenCenterX = w/2; screeenCenterY = h/2;
 gamestate=0;
@@ -239,7 +245,6 @@ function pruneScreen(entitiesArray){
 
 function gameloop(){
   if(1==1){
-  // stats.begin();
     switch(gamestate){
       case PRELOAD: 
         preload();
@@ -253,7 +258,6 @@ function gameloop(){
         break;
     }
     Key.update();
-  //  stats.end();
     requestAnimationFrame(gameloop);
   }
 }
