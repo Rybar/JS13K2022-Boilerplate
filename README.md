@@ -1,5 +1,19 @@
 ## JS13K 2022 Boilerplate
 
+Includes RetroBuffer, Soundbox music player, game loop with state machine, audio generation and loading, and a few other useful bits that I find myself writing over and over again.
+
+```
+-------------
+USED: 6006 BYTES
+REMAINING: 7306 BYTES (54.88% of 13k budget)
+-------------
+```
+
+A sample build can be found in /docs
+and "played" here:  
+https://rybar.github.io/JS13K2022-Boilerplate/docs/
+
+
 Built using a fork of @herebefrogs gamejam boilerplate for build automation.
 https://github.com/herebefrogs/gamejam-boilerplate
 
@@ -11,6 +25,9 @@ Version here is same as JS13K 2021 entry
 
 Soundbox synth for sounds and music
 https://github.com/mbitsnbites/soundbox
+
+
+
 
 
 
