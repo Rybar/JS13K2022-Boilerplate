@@ -1,19 +1,8 @@
-/*
-TODO:  Prioritized
-finish cleanup
-document retrobuffer functions
-make retrobuffer a class
-add fillpoly and drawpoly to retrobuffer
-put
-
-*/
 
 // import Stats from './Stats.js';
 // stats = new Stats();
 // stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
 // document.body.appendChild( stats.dom );
-
-
 
 import RetroBuffer from './core/RetroBuffer.js';
 import MusicPlayer from './musicplayer.js';
@@ -25,17 +14,16 @@ import tada from './sounds/tada.js';
 import { playSound, Key } from './core/utils.js';
 import Splode from './splode.js';
 
-document.body.style="margin:0; background-color:black; overflow:hidden";
 if(innerWidth < 800){
-  w = innerWidth;
-h = innerHeight;
-}else if(innerWidth < 1300){
-  w = Math.floor(innerWidth/2);
-  h = Math.floor(innerHeight/2);
-}else  {
-  w = Math.floor(innerWidth/3.5);
-h = Math.floor(innerHeight/3.5);
+  w = innerWidth/2;
+  h = innerHeight/2;
 }
+else {
+  w = Math.floor(innerWidth/4);
+  h = Math.floor(innerHeight/4);
+}
+
+
 
 view = {
   x: 0,
@@ -84,7 +72,7 @@ const TITLESCREEN = 2;
 
 
 function initGameData(){
-
+//map generation, pre-drawing, etc would go here
 }
 
 function initAudio(){
@@ -108,9 +96,9 @@ function initAudio(){
   totalSounds = sndData.length;
   soundsReady = 0;
   sndData.forEach(function(o){
-    var sndGenerator = new MusicPlayer();
+    const sndGenerator = new MusicPlayer();
     sndGenerator.init(o.data);
-    var done = false;
+    let done = false;
     setInterval(function () {
       if (done) {
         return;
@@ -129,6 +117,7 @@ function initAudio(){
 
 function updateGame(){
   t+=1;
+  splodes.push(new Splode(Math.random()*w, Math.random()*h, Math.random()*30, Math.floor(Math.random()*64)));
   splodes.forEach(e=>e.update());
   pruneDead(splodes);
 
@@ -138,10 +127,10 @@ function updateGame(){
 }
 
 function drawGame(){
-  r.clr(3, r.SCREEN)
-  let text = "GAME PLAY STATE"
-  r.text([text, w/2-2, 100, 1, 3, 'center', 'top', 1, 22]);
-
+  r.clr(2, r.SCREEN)
+  let text = "GAME PLAY STATE BUT NO GAME HERE!\nPRESS R TO RESET GAME";
+  r.text([text, w/2-2, 20, 1, 3, 'center', 'top', 1, 22]);
+  splodes.forEach(e=>e.draw());
   r.render();
 }
 
@@ -149,7 +138,7 @@ function resetGame(){
   window.t = 1;
   splodes = [];
   initGameData();
-  gameState = 2;
+  gamestate = 2;
 }
 
 function preload(){
@@ -179,9 +168,9 @@ function titlescreen(){
     gamestate = 1;
   }
 
-  r.clr(12, r.SCREEN)
-  let cols = 40, rows = 24;
-  let col = r.WIDTH / cols, row = r.HEIGHT / rows;
+  r.clr(14, r.SCREEN)
+  let cols = Math.ceil(w/32), rows = Math.ceil(h/32);
+  let col = 32, row = 32;
   for(let i = 0; i < cols; i++){
     r.line(i * col, 0, i * col, r.HEIGHT, 2);
   }
@@ -189,7 +178,10 @@ function titlescreen(){
     r.line(0, i * row, r.WIDTH, i * row, 2);
   }
   let text = "TITLE SCREEN"
-  r.text([text, w/2-2, 100, 1, 3, 'center', 'top', 1, 22]);
+  r.text([text, w/2-2, 100, 2, 3, 'center', 'top', 3, 22]);
+  text = "PRESS UP/W/Z TO PLAY";
+  r.text([text, w/2-2, 120, 1, 3, 'center', 'top', 1, 22]);
+
 
   r.render();
 }

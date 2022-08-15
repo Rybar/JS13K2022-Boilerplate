@@ -1,9 +1,18 @@
-## JS13K 2021 Untitled Space Game
+## JS13K 2022 Boilerplate
 
-
-Built using @herebefrogs gamejam boilerplate for build automation.
-
+Built using a fork of @herebefrogs gamejam boilerplate for build automation.
 https://github.com/herebefrogs/gamejam-boilerplate
+
+Roadroller is used for final crunching
+https://github.com/lifthrasiir/roadroller
+
+RetroBuffer for graphics
+Version here is same as JS13K 2021 entry
+
+Soundbox synth for sounds and music
+https://github.com/mbitsnbites/soundbox
+
+
 
 
 Getting Started
